@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ancla - E-commerce</title>
+
+    {% load static %}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<div class="container mt-3">
+
+    <div class="mb-3">
+
+        <a href="{% url 'tienda:inicio' %}" class="btn btn-light">Inicio</a>
+
+        <a href="{% url 'tienda:panel' %}" class="btn btn-info">Panel</a>
+
+        <a href="{% url 'tienda:listar_productos' %}" class="btn btn-primary">Productos</a>
+
+        <a href="{% url 'tienda:registro' %}" class="btn btn-secondary">Registro</a>
+
+        <a href="{% url 'tienda:ver_carrito' %}" class="btn btn-warning">
+            Carrito
+        </a>
+
+        {% if user.is_authenticated %}
+
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button class="btn btn-danger">Cerrar sesión</button>
+            </form>
+
+        {% else %}
+
+            <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+
+        {% endif %}
+
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+</body>
+</html>

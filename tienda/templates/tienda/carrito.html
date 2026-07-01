@@ -1,0 +1,21 @@
+<h1>Carrito</h1>
+
+{% for item in items %}
+  <div>
+    <h3>{{ item.product.nombre }}</h3>
+
+    <p>Cantidad: {{ item.cantidad }}</p>
+
+    <p>Subtotal: {{ item.subtotal }}</p>
+
+    <a href="{% url 'tienda:eliminar_del_carrito' item.product.id %}">
+        Eliminar
+    </a>
+  </div>
+{% endfor %}
+
+<h2>Total: {{ total }}</h2>
+
+<a href="{% url 'tienda:checkout' %}">
+    Confirmar compra
+</a>
